@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Bionic Reading Generator</h1>
+
+    <p>Enter some text below:</p>
+    <textarea class="input-area" id="input"></textarea>
+
+    <p>Output:</p>
+    <div class="output-area" id="output"></div>
+
+    <script>
+      const input = document.getElementById('input');
+      const output = document.getElementById('output');
+
+      function formatText(text) {
+        const words = text.split(' ');
+
+        // loop through the words and format them
+        const formattedWords = words.map(word => {
+          if (word.length < 5) {
+            // if the word is less than 5 letters, make the first 2 letters bold
+            return '<b>' + word.substr(0, 2) + '</b>' + word.substr(2);
+          } else if (word.length < 7) {
+            // if the word is less than 7 letters, make the first 3 letters bold
+            return '<b>' + word.substr(0, 3) + '</b>' + word.substr(3);
+          } else {
+            // if the word is 7 letters or longer, make the first 4 letters bold
+            return '<b>' + word.substr(0, 4) + '</b>' + word.substr(4);
+          }
+        });
+
+        // joining the words back into a string
+        return formattedWords.join(' ');
+      }
+
+      input.addEventListener('input', () => {
+        output.innerHTML = formatText(input.value);
+      });
+    </script>
+
+
+
+</body>
+</html>
